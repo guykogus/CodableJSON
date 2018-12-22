@@ -69,6 +69,18 @@ extension JSON {
         return value
     }
 
+    /// Hepler function to get the arraiy value, if possible
+    public var arrayValue: [JSON]? {
+        guard case .array(let value) = self else { return nil }
+        return value
+    }
+
+    /// Hepler function to get the object value, if possible
+    public var objectValue: [String: JSON]? {
+        guard case .object(let value) = self else { return nil }
+        return value
+    }
+
     /// Hepler function to get the number of contained values, if possible.
     public var count: Int? {
         switch self {
@@ -88,9 +100,7 @@ extension JSON {
     /// - Parameter index: The index of the array
     public subscript(index: Int) -> JSON? {
         get {
-            guard case .array(let value) = self,
-                index < value.count else { return nil }
-            return value[index]
+            return arrayValue?[index]
         }
         set {
             guard case .array(var value) = self,
@@ -109,8 +119,7 @@ extension JSON {
     /// - Parameter key: The key for retrieving the value from the dictionary.
     public subscript(key: String) -> JSON? {
         get {
-            guard case .object(let value) = self else { return nil }
-            return value[key]
+            return objectValue?[key]
         }
         set {
             guard case .object(var value) = self else { return }

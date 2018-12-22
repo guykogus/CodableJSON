@@ -105,6 +105,15 @@ class JSONTests: XCTestCase {
     }
 
     func testArray() {
+        XCTAssertNil(Dummy.null.arrayValue)
+        XCTAssertNil(Dummy.bool.arrayValue)
+        XCTAssertNil(Dummy.int.arrayValue)
+        XCTAssertNil(Dummy.double.arrayValue)
+        XCTAssertNil(Dummy.string.arrayValue)
+        XCTAssertNil(Dummy.object.arrayValue)
+
+        XCTAssertEqual(Dummy.array.arrayValue, [])
+
         XCTAssertNil(Dummy.null[0])
         XCTAssertNil(Dummy.bool[0])
         XCTAssertNil(Dummy.int[0])
@@ -132,6 +141,15 @@ class JSONTests: XCTestCase {
     }
 
     func testObject() {
+        XCTAssertNil(Dummy.null.objectValue)
+        XCTAssertNil(Dummy.bool.objectValue)
+        XCTAssertNil(Dummy.int.objectValue)
+        XCTAssertNil(Dummy.double.objectValue)
+        XCTAssertNil(Dummy.string.objectValue)
+        XCTAssertNil(Dummy.array.objectValue)
+
+        XCTAssertEqual(Dummy.object.objectValue, [:])
+
         XCTAssertNil(Dummy.null[""])
         XCTAssertNil(Dummy.bool[""])
         XCTAssertNil(Dummy.int[""])

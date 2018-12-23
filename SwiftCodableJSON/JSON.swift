@@ -100,7 +100,9 @@ extension JSON {
     /// - Parameter index: The index of the array
     public subscript(index: Int) -> JSON? {
         get {
-            return arrayValue?[index]
+            guard case .array(var value) = self,
+                index < value.count else { return nil }
+            return value[index]
         }
         set {
             guard case .array(var value) = self,

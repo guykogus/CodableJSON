@@ -71,9 +71,11 @@ companies["Apple"]?["address"]?["state"] = "California"
 
 # Installation
 
-SwiftCodableJSON is available through Cocoapods. To install, add to your Podfile:
+SwiftCodableJSON is available through [Cocoapods](https://cocoapods.org). To install, add to your Podfile:
 
-> pod 'SwiftCodableJSON'
+```
+pod 'SwiftCodableJSON'
+```
 
 # License
 

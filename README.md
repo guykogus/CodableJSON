@@ -1,4 +1,4 @@
-# SwiftCodableJSON
+# CodableJSON
 
 JSON in Swift - the way it should be.
 
@@ -49,9 +49,9 @@ if var apple = companies["Apple"] as? [String: Any],
 }
 ```
 
-### Using `SwiftCodableJSON`
+### Using `CodableJSON`
 
-Since JSON has a fixed set of types there's no need to perform all these casts in long form. `SwiftCodableJSON` uses an `enum` to store each type. With the aid of some helper functions, accessing the JSON values is now significantly shorter and easier.
+Since JSON has a fixed set of types there's no need to perform all these casts in long form. `CodableJSON` uses an `enum` to store each type. With the aid of some helper functions, accessing the JSON values is now significantly shorter and easier.
 
 ```Swift
 let companies = try JSONDecoder().decode(JSON.self, from: companiesData)
@@ -71,12 +71,12 @@ companies["Apple"]?["address"]?["state"] = "California"
 
 # Installation
 
-SwiftCodableJSON is available through [Cocoapods](https://cocoapods.org). To install, add to your Podfile:
+CodableJSON is available through [Cocoapods](https://cocoapods.org). To install, add to your Podfile:
 
 ```
-pod 'SwiftCodableJSON'
+pod 'CodableJSON'
 ```
 
 # License
 
-SwiftCodableJSON is available under the MIT license. See the LICENSE file for more info.
+CodableJSON is available under the MIT license. See the LICENSE file for more info.

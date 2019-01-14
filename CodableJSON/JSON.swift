@@ -310,6 +310,44 @@ extension JSON: Codable {
     }
 }
 
+// MARK: - Raw values
+
+// Generally used for compatibility with other libraries.
+
+extension JSON {
+    /// Helper function for getting values as `Any`, if possible.
+    ///
+    /// Arrays and dictionaries will convert nested values to their `rawValue` equivalents, where possible.
+    /// - `null` -> `nil`
+    /// - `bool` -> `Bool`
+    /// - `integer` -> `Int`
+    /// - `double` -> `Double`
+    /// - `string` -> `String`
+    /// - `array` -> `[Any]`
+    /// - `object` -> `[String: Any]`
+    public var rawValue: Any? {
+        switch self {
+        case .null:
+            return nil
+        case .bool(let value):
+            return value
+        case .int(let value):
+            return value
+        case .double(let value):
+            return value
+        case .string(let value):
+            return value
+        case .array(let value):
+            return value.compactMap { $0.rawValue }
+        case .object(let value):
+            return [String: Any](uniqueKeysWithValues: value.lazy.compactMap {
+                guard let rawValue = $1.rawValue else { return nil }
+                return ($0, rawValue)
+            })
+        }
+    }
+}
+
 // MARK: - CustomStringConvertible
 
 extension JSON: CustomStringConvertible {

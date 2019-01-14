@@ -256,4 +256,17 @@ class JSONTests: XCTestCase {
 
         XCTAssertEqual(JSON(Example.array.lazy), JSON(Example.array))
     }
+
+    func testRawValues() {
+        XCTAssertEqual(Example.object["foo"]?.rawValue as? String, "bar")
+        XCTAssertEqual(Example.object["fib"]?.rawValue as? [Int], [1, 1, 2, 3, 5, 8, 13])
+        XCTAssertEqual(Example.object["life"]?.rawValue as? Int, 42)
+        XCTAssertNil(Example.object["nothing"]?.rawValue)
+        XCTAssertEqual(Example.object["apple"]?["address"]?.rawValue as? [String: String], [
+            "street": "1 Infinite Loop",
+            "city": "Cupertino",
+            "state": "CA",
+            "zip": "95014"
+            ])
+    }
 }

@@ -11,17 +11,91 @@ public enum JSON: Equatable {
     /// A null object.
     case null
     /// A boolean value (true/false).
-    case bool(value: Bool)
+    case bool(_ value: Bool)
     /// A whole number integer value.
-    case int(value: Int)
+    case int(_ value: Int)
     /// A floating point value.
-    case double(value: Double)
+    case double(_ value: Double)
     /// A string value.
-    case string(value: String)
+    case string(_ value: String)
     /// An array of JSON objects.
-    case array(value: [JSON])
+    case array(_ value: [JSON])
     /// A dictionary of string keys to JSON objects.
-    case object(value: [String: JSON])
+    case object(_ value: [String: JSON])
+}
+
+// MARK: - Initialisers
+
+extension JSON {
+    /// Initialise a boolean value (true/false).
+    ///
+    /// - Parameter value: `true` or `false`
+    public init(_ value: Bool) {
+        self = .bool(value)
+    }
+
+    /// Initialise an integer value.
+    ///
+    /// - Parameter value: An `Int` value.
+    public init(_ value: Int) {
+        self = .int(value)
+    }
+
+    /// Initialise an integer value.
+    ///
+    /// - Parameter value: Any value representable by `BinaryInteger`.
+    public init<T>(_ value: T) where T: BinaryInteger {
+        self = .int(.init(value))
+    }
+
+    /// Initialise a floating point value.
+    ///
+    /// - Parameter value: A `Double` value.
+    public init(_ value: Double) {
+        self = .double(value)
+    }
+
+    /// Initialise a floating point value.
+    ///
+    /// - Parameter value: Any value representable by `BinaryFloatingPoint`.
+    public init<T>(_ value: T) where T: BinaryFloatingPoint {
+        self = .double(.init(value))
+    }
+
+    /// Initialise a string value.
+    ///
+    /// - Parameter value: A `String` value.
+    public init(_ value: String) {
+        self = .string(value)
+    }
+
+    /// Initialise a string value.
+    ///
+    /// - Parameter value: Any value representable by `StringProtocol`.
+    public init<T>(_ value: T) where T: StringProtocol {
+        self = .string(.init(value))
+    }
+
+    /// Initialise an array of JSON objects.
+    ///
+    /// - Parameter value: An `Array` of `JSON` objects.
+    public init(_ value: [JSON]) {
+        self = .array(value)
+    }
+
+    /// Initialise an array of JSON objects.
+    ///
+    /// - Parameter value: A `Sequence` of `JSON` objects.
+    public init<S>(_ value: S) where S: Sequence, S.Element == JSON {
+        self = .array(.init(value))
+    }
+
+    /// Initialise a dictionary of string keys to JSON objects.
+    ///
+    /// - Parameter value: A `Dictionary` of `String` keys to `JSON` objects.
+    public init(_ value: [String: JSON]) {
+        self = .object(value)
+    }
 }
 
 // MARK: - Helpers
@@ -63,19 +137,19 @@ extension JSON {
         }
     }
 
-    /// Hepler function to get the string value, if possible
+    /// Hepler function to get the string value, if possible.
     public var stringValue: String? {
         guard case .string(let value) = self else { return nil }
         return value
     }
 
-    /// Hepler function to get the arraiy value, if possible
+    /// Hepler function to get the arraiy value, if possible.
     public var arrayValue: [JSON]? {
         guard case .array(let value) = self else { return nil }
         return value
     }
 
-    /// Hepler function to get the object value, if possible
+    /// Hepler function to get the object value, if possible.
     public var objectValue: [String: JSON]? {
         guard case .object(let value) = self else { return nil }
         return value
@@ -112,7 +186,7 @@ extension JSON {
             } else {
                 value[index] = .null
             }
-            self = .array(value: value)
+            self = .array(value)
         }
     }
 
@@ -130,7 +204,7 @@ extension JSON {
             } else {
                 value[key] = newValue
             }
-            self = .object(value: value)
+            self = .object(value)
         }
     }
 }
@@ -179,26 +253,26 @@ extension JSON: Codable {
             for key in container.allKeys {
                 object[key.stringValue] = try container.decode(JSON.self, forKey: key)
             }
-            self = .object(value: object)
+            self = .object(object)
         } else if var arrayContainer = try? decoder.unkeyedContainer() {
             var array = [JSON]()
             array.reserveCapacity(arrayContainer.count ?? 0)
             while !arrayContainer.isAtEnd {
                 array.append(try arrayContainer.decode(JSON.self))
             }
-            self = .array(value: array)
+            self = .array(array)
         } else {
             let container = try decoder.singleValueContainer()
             if container.decodeNil() {
                 self = .null
             } else if let string = try? container.decode(String.self) {
-                self = .string(value: string)
+                self = .string(string)
             } else if let int = try? container.decode(Int.self) {
-                self = .int(value: int)
+                self = .int(int)
             } else if let double = try? container.decode(Double.self) {
-                self = .double(value: double)
+                self = .double(double)
             } else if let bool = try? container.decode(Bool.self) {
-                self = .bool(value: bool)
+                self = .bool(bool)
             } else {
                 throw Errors.unknownType
             }
@@ -294,36 +368,36 @@ extension JSON: ExpressibleByNilLiteral {
 
 extension JSON: ExpressibleByBooleanLiteral {
     public init(booleanLiteral value: Bool) {
-        self = .bool(value: value)
+        self = .bool(value)
     }
 }
 
 extension JSON: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
-        self = .int(value: value)
+        self = .int(value)
     }
 }
 
 extension JSON: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
-        self = .double(value: value)
+        self = .double(value)
     }
 }
 
 extension JSON: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self = .string(value: value)
+        self = .string(value)
     }
 }
 
 extension JSON: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: JSON...) {
-        self = .array(value: elements)
+        self = .array(elements)
     }
 }
 
 extension JSON: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (String, JSON)...) {
-        self = .object(value: .init(elements, uniquingKeysWith: { (lhs, _) in lhs }))
+        self = .object(.init(uniqueKeysWithValues: elements))
     }
 }

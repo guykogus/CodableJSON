@@ -12,12 +12,30 @@ import XCTest
 class JSONTests: XCTestCase {
     struct Dummy {
         static let null = JSON.null
-        static let bool = JSON.bool(value: false)
-        static let int = JSON.int(value: 0)
-        static let double = JSON.double(value: 0)
-        static let string = JSON.string(value: "")
-        static let array = JSON.array(value: [])
-        static let object = JSON.object(value: [:])
+        static let bool = JSON.bool(false)
+        static let int = JSON.int(0)
+        static let double = JSON.double(0)
+        static let string = JSON.string("")
+        static let array = JSON.array([])
+        static let object = JSON.object([:])
+    }
+
+    struct Example {
+        static let array: [JSON] = [1, 1, 2, 3, 5, 8, 13]
+        static let object: JSON = [
+            "foo": "bar",
+            "fib": JSON(array),
+            "life": 42,
+            "nothing": nil,
+            "apple": [
+                "address": [
+                    "street": "1 Infinite Loop",
+                    "city": "Cupertino",
+                    "state": "CA",
+                    "zip": "95014"
+                ]
+            ]
+        ]
     }
 
     func testNull() {
@@ -40,8 +58,8 @@ class JSONTests: XCTestCase {
         XCTAssertNil(Dummy.object.boolValue)
 
         XCTAssertNotNil(Dummy.bool.boolValue)
-        XCTAssertFalse(JSON.bool(value: false).boolValue!)
-        XCTAssertTrue(JSON.bool(value: true).boolValue!)
+        XCTAssertFalse(JSON.bool(false).boolValue!)
+        XCTAssertTrue(JSON.bool(true).boolValue!)
     }
 
     func testInt() {
@@ -52,8 +70,8 @@ class JSONTests: XCTestCase {
         XCTAssertNil(Dummy.object.intValue)
 
         XCTAssertEqual(Dummy.double.intValue, 0)
-        XCTAssertNil(JSON.double(value: Double.leastNormalMagnitude).intValue)
-        XCTAssertNil(JSON.double(value: Double.leastNonzeroMagnitude).intValue)
+        XCTAssertNil(JSON.double(Double.leastNormalMagnitude).intValue)
+        XCTAssertNil(JSON.double(Double.leastNonzeroMagnitude).intValue)
 
         XCTAssertEqual(Dummy.int.intValue, 0)
         let positive: JSON = 123
@@ -226,5 +244,16 @@ class JSONTests: XCTestCase {
         encoder.outputFormatting = [.sortedKeys]
         XCTAssertEqual(String(data: try! encoder.encode(jsonValue), encoding: .utf8),
                        stringValue)
+    }
+
+    func testHelperInitialisers() {
+        XCTAssertEqual(JSON(true), true)
+        XCTAssertEqual(JSON(Int8(127)), 127)
+        XCTAssertEqual(JSON(Float(3.141)).doubleValue!, 3.141, accuracy: 0.0001)
+
+        let string = "Hello world"
+        XCTAssertEqual(JSON(string[string.startIndex..<string.endIndex]), JSON(string))
+
+        XCTAssertEqual(JSON(Example.array.lazy), JSON(Example.array))
     }
 }

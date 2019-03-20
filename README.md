@@ -1,5 +1,8 @@
 # CodableJSON
 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CodableJSON.svg)](https://cocoapods.org)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 JSON in Swift - the way it should be.
 
 # Usage

@@ -5,6 +5,12 @@
 
 JSON in Swift - the way it should be.
 
+# Requirements
+
+- iOS 8.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+
+- Xcode 10.1+
+- Swift 4.2+
+
 # Usage
 
 In the modern era of `Codable` it is rare that we need to handle JSON data manually. Nevertheless there are times when we can't know the structure in advance, but we can still utilise `Codable` to make our lives easier.

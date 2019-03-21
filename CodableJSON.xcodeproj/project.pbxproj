@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80A6DF32243923700A7CEF0 /* CodableJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80A6DEA2243923600A7CEF0 /* CodableJSON.framework */; };
+		F80A6DFA2243923700A7CEF0 /* CodableJSON_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F80A6DEC2243923700A7CEF0 /* CodableJSON_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80A6E012243924000A7CEF0 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF3221CD997C0002D830 /* JSONTests.swift */; };
+		F80A6E022243924600A7CEF0 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF2E21CD98DD0002D830 /* JSON.swift */; };
+		F80A6E112243925600A7CEF0 /* CodableJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F80A6E082243925600A7CEF0 /* CodableJSON.framework */; };
+		F80A6E182243925700A7CEF0 /* CodableJSON_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F80A6E0A2243925600A7CEF0 /* CodableJSON_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80A6E1F2243925E00A7CEF0 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF3221CD997C0002D830 /* JSONTests.swift */; };
+		F80A6E202243926300A7CEF0 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF2E21CD98DD0002D830 /* JSON.swift */; };
+		F80A6E2A2243927000A7CEF0 /* CodableJSON_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F80A6E282243927000A7CEF0 /* CodableJSON_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F80A6E2E2243927800A7CEF0 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF2E21CD98DD0002D830 /* JSON.swift */; };
 		F883AF1E21CD98BB0002D830 /* CodableJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F883AF1421CD98BB0002D830 /* CodableJSON.framework */; };
 		F883AF2521CD98BB0002D830 /* CodableJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F883AF1721CD98BB0002D830 /* CodableJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F883AF2F21CD98DE0002D830 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883AF2E21CD98DD0002D830 /* JSON.swift */; };
@@ -14,6 +24,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F80A6DF42243923700A7CEF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F883AF0B21CD98BB0002D830 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F80A6DE92243923600A7CEF0;
+			remoteInfo = "CodableJSON-iOS";
+		};
+		F80A6E122243925600A7CEF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F883AF0B21CD98BB0002D830 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F80A6E072243925600A7CEF0;
+			remoteInfo = "CodableJSON-tvOS";
+		};
 		F883AF1F21CD98BB0002D830 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F883AF0B21CD98BB0002D830 /* Project object */;
@@ -24,6 +48,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80A6DEA2243923600A7CEF0 /* CodableJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A6DEC2243923700A7CEF0 /* CodableJSON_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodableJSON_iOS.h; sourceTree = "<group>"; };
+		F80A6DED2243923700A7CEF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80A6DF22243923700A7CEF0 /* CodableJSON-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CodableJSON-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A6DF92243923700A7CEF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80A6E082243925600A7CEF0 /* CodableJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A6E0A2243925600A7CEF0 /* CodableJSON_tvOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodableJSON_tvOS.h; sourceTree = "<group>"; };
+		F80A6E0B2243925600A7CEF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80A6E102243925600A7CEF0 /* CodableJSON-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CodableJSON-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A6E172243925700A7CEF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80A6E262243927000A7CEF0 /* CodableJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80A6E282243927000A7CEF0 /* CodableJSON_watchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodableJSON_watchOS.h; sourceTree = "<group>"; };
+		F80A6E292243927000A7CEF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F883AF1421CD98BB0002D830 /* CodableJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CodableJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F883AF1721CD98BB0002D830 /* CodableJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CodableJSON.h; sourceTree = "<group>"; };
 		F883AF1821CD98BB0002D830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +71,43 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F80A6DE72243923600A7CEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6DEF2243923700A7CEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6DF32243923700A7CEF0 /* CodableJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E052243925600A7CEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E0D2243925600A7CEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E112243925600A7CEF0 /* CodableJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E232243927000A7CEF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F883AF1121CD98BB0002D830 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -52,11 +126,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F80A6DEB2243923700A7CEF0 /* CodableJSON-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F80A6DEC2243923700A7CEF0 /* CodableJSON_iOS.h */,
+				F80A6DED2243923700A7CEF0 /* Info.plist */,
+			);
+			path = "CodableJSON-iOS";
+			sourceTree = "<group>";
+		};
+		F80A6DF62243923700A7CEF0 /* CodableJSON-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				F80A6DF92243923700A7CEF0 /* Info.plist */,
+			);
+			path = "CodableJSON-iOSTests";
+			sourceTree = "<group>";
+		};
+		F80A6E092243925600A7CEF0 /* CodableJSON-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				F80A6E0A2243925600A7CEF0 /* CodableJSON_tvOS.h */,
+				F80A6E0B2243925600A7CEF0 /* Info.plist */,
+			);
+			path = "CodableJSON-tvOS";
+			sourceTree = "<group>";
+		};
+		F80A6E142243925600A7CEF0 /* CodableJSON-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				F80A6E172243925700A7CEF0 /* Info.plist */,
+			);
+			path = "CodableJSON-tvOSTests";
+			sourceTree = "<group>";
+		};
+		F80A6E272243927000A7CEF0 /* CodableJSON-watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				F80A6E282243927000A7CEF0 /* CodableJSON_watchOS.h */,
+				F80A6E292243927000A7CEF0 /* Info.plist */,
+			);
+			path = "CodableJSON-watchOS";
+			sourceTree = "<group>";
+		};
 		F883AF0A21CD98BB0002D830 = {
 			isa = PBXGroup;
 			children = (
 				F883AF1621CD98BB0002D830 /* CodableJSON */,
 				F883AF2121CD98BB0002D830 /* CodableJSONTests */,
+				F80A6DEB2243923700A7CEF0 /* CodableJSON-iOS */,
+				F80A6DF62243923700A7CEF0 /* CodableJSON-iOSTests */,
+				F80A6E092243925600A7CEF0 /* CodableJSON-tvOS */,
+				F80A6E142243925600A7CEF0 /* CodableJSON-tvOSTests */,
+				F80A6E272243927000A7CEF0 /* CodableJSON-watchOS */,
 				F883AF1521CD98BB0002D830 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +188,11 @@
 			children = (
 				F883AF1421CD98BB0002D830 /* CodableJSON.framework */,
 				F883AF1D21CD98BB0002D830 /* CodableJSONTests.xctest */,
+				F80A6DEA2243923600A7CEF0 /* CodableJSON.framework */,
+				F80A6DF22243923700A7CEF0 /* CodableJSON-iOSTests.xctest */,
+				F80A6E082243925600A7CEF0 /* CodableJSON.framework */,
+				F80A6E102243925600A7CEF0 /* CodableJSON-tvOSTests.xctest */,
+				F80A6E262243927000A7CEF0 /* CodableJSON.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +219,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		F80A6DE52243923600A7CEF0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6DFA2243923700A7CEF0 /* CodableJSON_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E032243925600A7CEF0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E182243925700A7CEF0 /* CodableJSON_tvOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E212243927000A7CEF0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E2A2243927000A7CEF0 /* CodableJSON_watchOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F883AF0F21CD98BB0002D830 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,6 +254,96 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F80A6DE92243923600A7CEF0 /* CodableJSON-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80A6DFF2243923700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-iOS" */;
+			buildPhases = (
+				F80A6DE52243923600A7CEF0 /* Headers */,
+				F80A6DE62243923600A7CEF0 /* Sources */,
+				F80A6DE72243923600A7CEF0 /* Frameworks */,
+				F80A6DE82243923600A7CEF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CodableJSON-iOS";
+			productName = "CodableJSON-iOS";
+			productReference = F80A6DEA2243923600A7CEF0 /* CodableJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F80A6DF12243923700A7CEF0 /* CodableJSON-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80A6E002243923700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-iOSTests" */;
+			buildPhases = (
+				F80A6DEE2243923700A7CEF0 /* Sources */,
+				F80A6DEF2243923700A7CEF0 /* Frameworks */,
+				F80A6DF02243923700A7CEF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F80A6DF52243923700A7CEF0 /* PBXTargetDependency */,
+			);
+			name = "CodableJSON-iOSTests";
+			productName = "CodableJSON-iOSTests";
+			productReference = F80A6DF22243923700A7CEF0 /* CodableJSON-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F80A6E072243925600A7CEF0 /* CodableJSON-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80A6E192243925700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-tvOS" */;
+			buildPhases = (
+				F80A6E032243925600A7CEF0 /* Headers */,
+				F80A6E042243925600A7CEF0 /* Sources */,
+				F80A6E052243925600A7CEF0 /* Frameworks */,
+				F80A6E062243925600A7CEF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CodableJSON-tvOS";
+			productName = "CodableJSON-tvOS";
+			productReference = F80A6E082243925600A7CEF0 /* CodableJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F80A6E0F2243925600A7CEF0 /* CodableJSON-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80A6E1C2243925700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-tvOSTests" */;
+			buildPhases = (
+				F80A6E0C2243925600A7CEF0 /* Sources */,
+				F80A6E0D2243925600A7CEF0 /* Frameworks */,
+				F80A6E0E2243925600A7CEF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F80A6E132243925600A7CEF0 /* PBXTargetDependency */,
+			);
+			name = "CodableJSON-tvOSTests";
+			productName = "CodableJSON-tvOSTests";
+			productReference = F80A6E102243925600A7CEF0 /* CodableJSON-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F80A6E252243927000A7CEF0 /* CodableJSON-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F80A6E2B2243927000A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-watchOS" */;
+			buildPhases = (
+				F80A6E212243927000A7CEF0 /* Headers */,
+				F80A6E222243927000A7CEF0 /* Sources */,
+				F80A6E232243927000A7CEF0 /* Frameworks */,
+				F80A6E242243927000A7CEF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CodableJSON-watchOS";
+			productName = "CodableJSON-watchOS";
+			productReference = F80A6E262243927000A7CEF0 /* CodableJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		F883AF1321CD98BB0002D830 /* CodableJSON */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F883AF2821CD98BB0002D830 /* Build configuration list for PBXNativeTarget "CodableJSON" */;
@@ -149,6 +390,21 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Guy Kogus";
 				TargetAttributes = {
+					F80A6DE92243923600A7CEF0 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F80A6DF12243923700A7CEF0 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F80A6E072243925600A7CEF0 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F80A6E0F2243925600A7CEF0 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F80A6E252243927000A7CEF0 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					F883AF1321CD98BB0002D830 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
@@ -172,11 +428,51 @@
 			targets = (
 				F883AF1321CD98BB0002D830 /* CodableJSON */,
 				F883AF1C21CD98BB0002D830 /* CodableJSONTests */,
+				F80A6DE92243923600A7CEF0 /* CodableJSON-iOS */,
+				F80A6DF12243923700A7CEF0 /* CodableJSON-iOSTests */,
+				F80A6E072243925600A7CEF0 /* CodableJSON-tvOS */,
+				F80A6E0F2243925600A7CEF0 /* CodableJSON-tvOSTests */,
+				F80A6E252243927000A7CEF0 /* CodableJSON-watchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F80A6DE82243923600A7CEF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6DF02243923700A7CEF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E062243925600A7CEF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E0E2243925600A7CEF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E242243927000A7CEF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F883AF1221CD98BB0002D830 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +490,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F80A6DE62243923600A7CEF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E022243924600A7CEF0 /* JSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6DEE2243923700A7CEF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E012243924000A7CEF0 /* JSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E042243925600A7CEF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E202243926300A7CEF0 /* JSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E0C2243925600A7CEF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E1F2243925E00A7CEF0 /* JSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F80A6E222243927000A7CEF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F80A6E2E2243927800A7CEF0 /* JSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F883AF1021CD98BB0002D830 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +549,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F80A6DF52243923700A7CEF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F80A6DE92243923600A7CEF0 /* CodableJSON-iOS */;
+			targetProxy = F80A6DF42243923700A7CEF0 /* PBXContainerItemProxy */;
+		};
+		F80A6E132243925600A7CEF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F80A6E072243925600A7CEF0 /* CodableJSON-tvOS */;
+			targetProxy = F80A6E122243925600A7CEF0 /* PBXContainerItemProxy */;
+		};
 		F883AF2021CD98BB0002D830 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F883AF1321CD98BB0002D830 /* CodableJSON */;
@@ -221,6 +567,259 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		F80A6DFB2243923700A7CEF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F80A6DFC2243923700A7CEF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F80A6DFD2243923700A7CEF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				INFOPLIST_FILE = "CodableJSON-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F80A6DFE2243923700A7CEF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				INFOPLIST_FILE = "CodableJSON-iOSTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F80A6E1A2243925700A7CEF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F80A6E1B2243925700A7CEF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F80A6E1D2243925700A7CEF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				INFOPLIST_FILE = "CodableJSON-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+			};
+			name = Debug;
+		};
+		F80A6E1E2243925700A7CEF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				INFOPLIST_FILE = "CodableJSON-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 12.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F80A6E2C2243927000A7CEF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-watchOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		F80A6E2D2243927000A7CEF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P76UMZDLW3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "CodableJSON-watchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-watchOS";
+				PRODUCT_NAME = CodableJSON;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		F883AF2621CD98BB0002D830 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -273,6 +872,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -331,6 +931,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -436,6 +1037,51 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F80A6DFF2243923700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F80A6DFB2243923700A7CEF0 /* Debug */,
+				F80A6DFC2243923700A7CEF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F80A6E002243923700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F80A6DFD2243923700A7CEF0 /* Debug */,
+				F80A6DFE2243923700A7CEF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F80A6E192243925700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F80A6E1A2243925700A7CEF0 /* Debug */,
+				F80A6E1B2243925700A7CEF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F80A6E1C2243925700A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F80A6E1D2243925700A7CEF0 /* Debug */,
+				F80A6E1E2243925700A7CEF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F80A6E2B2243927000A7CEF0 /* Build configuration list for PBXNativeTarget "CodableJSON-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F80A6E2C2243927000A7CEF0 /* Debug */,
+				F80A6E2D2243927000A7CEF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F883AF0E21CD98BB0002D830 /* Build configuration list for PBXProject "CodableJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -7,7 +7,13 @@
 //
 
 import XCTest
+#if os(macOS)
 @testable import CodableJSON
+#elseif os(iOS)
+@testable import CodableJSON_iOS
+#elseif os(tvOS)
+@testable import CodableJSON_tvOS
+#endif
 
 class JSONTests: XCTestCase {
     struct Dummy {

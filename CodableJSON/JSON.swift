@@ -323,8 +323,8 @@ extension JSON {
     /// - `integer` -> `Int`
     /// - `double` -> `Double`
     /// - `string` -> `String`
-    /// - `array` -> `[Any]`
-    /// - `object` -> `[String: Any]`
+    /// - `array` -> `[Any?]`
+    /// - `object` -> `[String: Any?]`
     public var rawValue: Any? {
         switch self {
         case .null:
@@ -340,10 +340,7 @@ extension JSON {
         case .array(let value):
             return value.compactMap { $0.rawValue }
         case .object(let value):
-            return [String: Any](uniqueKeysWithValues: value.lazy.compactMap {
-                guard let rawValue = $1.rawValue else { return nil }
-                return ($0, rawValue)
-            })
+            return [String: Any?](uniqueKeysWithValues: value.lazy.map { ($0, $1.rawValue) })
         }
     }
 }

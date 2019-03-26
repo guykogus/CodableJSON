@@ -262,6 +262,7 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(Example.object["fib"]?.rawValue as? [Int], [1, 1, 2, 3, 5, 8, 13])
         XCTAssertEqual(Example.object["life"]?.rawValue as? Int, 42)
         XCTAssertNil(Example.object["nothing"]?.rawValue)
+        XCTAssert((Example.object.rawValue as? [String: Any?])?.keys.contains("nothing") == true)
         XCTAssertEqual(Example.object["apple"]?["address"]?.rawValue as? [String: String], [
             "street": "1 Infinite Loop",
             "city": "Cupertino",

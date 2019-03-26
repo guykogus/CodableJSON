@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CodableJSON'
-  s.version = '1.1.1'
+  s.version = '1.1.3'
   s.summary = 'JSON in Swift - the way it should be'
   s.description = <<-DESC
   Simplify the way that you use JSON objects.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   s.source = { git: 'https://github.com/guykogus/CodableJSON.git', tag: s.version.to_s }
   s.source_files = 'CodableJSON/*.swift'
 end

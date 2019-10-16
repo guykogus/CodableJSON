@@ -279,4 +279,53 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(JSON(rawValue: ["foo": "bar"]), .object(["foo": "bar"]))
         XCTAssertEqual(JSON(rawValue: Date()), nil)
     }
+
+    #if canImport(Foundation)
+    struct Person: Codable, Equatable {
+        let firstName: String
+        let lastName: String
+        let height: Int
+        let dateOfBirth: Date
+
+        static let person = Person(firstName: "Guy", lastName: "Kogus", height: 173, dateOfBirth: Date(timeIntervalSince1970: 0))
+        static let json = JSON([
+            "first_name": "Guy",
+            "last_name": "Kogus",
+            "height": 173,
+            "date_of_birth": "1970-01-01T00:00:00Z"
+        ])
+    }
+
+    func testEncodable() {
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+
+            let json = try JSON(Person.person, encoder: encoder)
+            XCTAssertEqual(json, Person.json)
+
+            let string = try JSON(JSON("foo"), encoder: encoder)
+            XCTAssertEqual(string, "foo")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testDecodable() {
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+            let person = try Person.json.decode(Person.self, decoder: decoder)
+            XCTAssertEqual(person, Person.person)
+
+            let string = try JSON("foo").decode(String.self, decoder: decoder)
+            XCTAssertEqual(string, "foo")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    #endif
 }

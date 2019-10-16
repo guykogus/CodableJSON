@@ -212,7 +212,7 @@ public extension JSON {
 // MARK: - Codable
 
 extension JSON: Codable {
-    private enum Errors: Error {
+    enum CodableError: Error {
         case unknownType
     }
 
@@ -274,7 +274,7 @@ extension JSON: Codable {
             } else if let bool = try? container.decode(Bool.self) {
                 self = .bool(bool)
             } else {
-                throw Errors.unknownType
+                throw CodableError.unknownType
             }
         }
     }
@@ -472,3 +472,38 @@ extension JSON: ExpressibleByDictionaryLiteral {
         self = .object(.init(uniqueKeysWithValues: elements))
     }
 }
+
+#if canImport(Foundation)
+import Foundation
+
+public extension JSON {
+    enum SerializationError: Error {
+        case missingValue
+    }
+
+    /// Initialise using an encodable value
+    /// - Parameter value: An object conforming to `Encodable`
+    /// - Parameter encoder: The encoder to use for generating the JSON data
+    init<T>(_ value: T, encoder: JSONEncoder) throws where T: Encodable {
+        let obj = try JSONSerialization.jsonObject(with: try encoder.encode(value), options: [.fragmentsAllowed])
+        self = JSON(rawValue: obj)!
+    }
+
+    /// Returns a value of the type you specify, decoded from a JSON object.
+    /// - Parameter type: The type of the value to decode from the supplied JSON object.
+    /// - Parameter decoder: The JSON object to decode.
+    func decode<T>(_ type: T.Type, decoder: JSONDecoder) throws -> T where T: Decodable {
+        guard let rawValue = rawValue else { throw SerializationError.missingValue }
+
+        let data = try JSONSerialization.data(withJSONObject: rawValue, options: [.fragmentsAllowed])
+        return try decoder.decode(T.self, from: data)
+    }
+
+    /// Returns a value of the expected return type, decoded from a JSON object.
+    /// If the return type cannot be easily deduced, use `decode(_:decoder:)` instead.
+    /// - Parameter decoder: The JSON object to decode.
+    func decode<T>(decoder: JSONDecoder) throws -> T where T: Decodable {
+        return try decode(T.self, decoder: decoder)
+    }
+}
+#endif

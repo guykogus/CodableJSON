@@ -174,7 +174,7 @@ extension JSON {
     /// - Parameter index: The index of the array
     public subscript(index: Int) -> JSON? {
         get {
-            guard case .array(var value) = self,
+            guard case .array(let value) = self,
                 index < value.count else { return nil }
             return value[index]
         }
@@ -338,7 +338,7 @@ extension JSON {
         case .string(let value):
             return value
         case .array(let value):
-            return value.compactMap { $0.rawValue }
+            return value.map { $0.rawValue }
         case .object(let value):
             return [String: Any?](uniqueKeysWithValues: value.lazy.map { ($0, $1.rawValue) })
         }

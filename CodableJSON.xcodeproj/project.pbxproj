@@ -586,6 +586,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = iphoneos;
@@ -613,6 +614,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-iOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = iphoneos;
@@ -686,6 +688,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = appletvos;
@@ -713,6 +716,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-tvOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = appletvos;
@@ -784,6 +788,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-watchOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = watchos;
@@ -811,6 +816,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kogus.CodableJSON-watchOS";
 				PRODUCT_NAME = CodableJSON;
 				SDKROOT = watchos;
@@ -968,6 +974,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kogus.CodableJSON;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -996,6 +1003,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kogus.CodableJSON;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

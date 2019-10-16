@@ -26,95 +26,95 @@ public enum JSON: Equatable {
 
 // MARK: - Initialisers
 
-extension JSON {
+public extension JSON {
     /// Initialise a boolean value (true/false).
     ///
     /// - Parameter value: `true` or `false`
-    public init(_ value: Bool) {
+    init(_ value: Bool) {
         self = .bool(value)
     }
 
     /// Initialise an integer value.
     ///
     /// - Parameter value: An `Int` value.
-    public init(_ value: Int) {
+    init(_ value: Int) {
         self = .int(value)
     }
 
     /// Initialise an integer value.
     ///
     /// - Parameter value: Any value representable by `BinaryInteger`.
-    public init<T>(_ value: T) where T: BinaryInteger {
+    init<T>(_ value: T) where T: BinaryInteger {
         self = .int(.init(value))
     }
 
     /// Initialise a floating point value.
     ///
     /// - Parameter value: A `Double` value.
-    public init(_ value: Double) {
+    init(_ value: Double) {
         self = .double(value)
     }
 
     /// Initialise a floating point value.
     ///
     /// - Parameter value: Any value representable by `BinaryFloatingPoint`.
-    public init<T>(_ value: T) where T: BinaryFloatingPoint {
+    init<T>(_ value: T) where T: BinaryFloatingPoint {
         self = .double(.init(value))
     }
 
     /// Initialise a string value.
     ///
     /// - Parameter value: A `String` value.
-    public init(_ value: String) {
+    init(_ value: String) {
         self = .string(value)
     }
 
     /// Initialise a string value.
     ///
     /// - Parameter value: Any value representable by `StringProtocol`.
-    public init<T>(_ value: T) where T: StringProtocol {
+    init<T>(_ value: T) where T: StringProtocol {
         self = .string(.init(value))
     }
 
     /// Initialise an array of JSON objects.
     ///
     /// - Parameter value: An `Array` of `JSON` objects.
-    public init(_ value: [JSON]) {
+    init(_ value: [JSON]) {
         self = .array(value)
     }
 
     /// Initialise an array of JSON objects.
     ///
     /// - Parameter value: A `Sequence` of `JSON` objects.
-    public init<S>(_ value: S) where S: Sequence, S.Element == JSON {
+    init<S>(_ value: S) where S: Sequence, S.Element == JSON {
         self = .array(.init(value))
     }
 
     /// Initialise a dictionary of string keys to JSON objects.
     ///
     /// - Parameter value: A `Dictionary` of `String` keys to `JSON` objects.
-    public init(_ value: [String: JSON]) {
+    init(_ value: [String: JSON]) {
         self = .object(value)
     }
 }
 
 // MARK: - Helpers
 
-extension JSON {
+public extension JSON {
     /// Hepler function to check if the value is null.
-    public var isNull: Bool {
+    var isNull: Bool {
         guard case .null = self else { return false }
         return true
     }
 
     /// Hepler function to get the boolean value, if possible.
-    public var boolValue: Bool? {
+    var boolValue: Bool? {
         guard case .bool(let value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the integer value, if possible.
-    public var intValue: Int? {
+    var intValue: Int? {
         switch self {
         case .null, .bool(_), .string(_), .array(_), .object(_):
             return nil
@@ -126,7 +126,7 @@ extension JSON {
     }
 
     /// Hepler function to get the floating point value, if possible.
-    public var doubleValue: Double? {
+    var doubleValue: Double? {
         switch self {
         case .null, .bool(_), .string(_), .array(_), .object(_):
             return nil
@@ -138,25 +138,25 @@ extension JSON {
     }
 
     /// Hepler function to get the string value, if possible.
-    public var stringValue: String? {
+    var stringValue: String? {
         guard case .string(let value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the arraiy value, if possible.
-    public var arrayValue: [JSON]? {
+    var arrayValue: [JSON]? {
         guard case .array(let value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the object value, if possible.
-    public var objectValue: [String: JSON]? {
+    var objectValue: [String: JSON]? {
         guard case .object(let value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the number of contained values, if possible.
-    public var count: Int? {
+    var count: Int? {
         switch self {
         case .null, .bool(_), .int(_), .double(_), .string(_):
             return nil
@@ -172,7 +172,7 @@ extension JSON {
     /// An index check is performed to avoid out-of-bounds exceptions.
     ///
     /// - Parameter index: The index of the array
-    public subscript(index: Int) -> JSON? {
+    subscript(index: Int) -> JSON? {
         get {
             guard case .array(let value) = self,
                 index < value.count else { return nil }
@@ -193,7 +193,7 @@ extension JSON {
     /// Helper function to provide access to the values of the dictionary, if possible.
     ///
     /// - Parameter key: The key for retrieving the value from the dictionary.
-    public subscript(key: String) -> JSON? {
+    subscript(key: String) -> JSON? {
         get {
             return objectValue?[key]
         }
@@ -314,7 +314,7 @@ extension JSON: Codable {
 
 // Generally used for compatibility with other libraries.
 
-extension JSON {
+public extension JSON {
     /// Helper function for getting values as `Any`, if possible.
     ///
     /// Arrays and dictionaries will convert nested values to their `rawValue` equivalents, where possible.
@@ -325,7 +325,7 @@ extension JSON {
     /// - `string` -> `String`
     /// - `array` -> `[Any?]`
     /// - `object` -> `[String: Any?]`
-    public var rawValue: Any? {
+    var rawValue: Any? {
         switch self {
         case .null:
             return nil
@@ -341,6 +341,42 @@ extension JSON {
             return value.map { $0.rawValue }
         case .object(let value):
             return [String: Any?](uniqueKeysWithValues: value.lazy.map { ($0, $1.rawValue) })
+        }
+    }
+
+    /// Attempt to initialize a `JSON` object from `Any` value.
+    ///
+    /// Arrays and dictionaries will convert nested values to their `JSON` equivalents, where possible.
+    /// - `nil` -> `null`
+    /// - `Bool` -> `bool`
+    /// - `Int` -> `integer`
+    /// - `Double` -> `double`
+    /// - `String` -> `string`
+    /// - `[Any?]` -> `array`
+    /// - `[String: Any?]` -> `object`
+    ///
+    /// - Parameter rawValue: The value whose type will be checked for creating a `JSON` object.
+    init?(rawValue: Any?) {
+        switch rawValue {
+        case .none:
+            self = .null
+        case .some(let value):
+            switch value {
+            case let boolValue as Bool:
+                self = .bool(boolValue)
+            case let intValue as Int:
+                self = .int(intValue)
+            case let intValue as Double:
+                self = .double(intValue)
+            case let intValue as String:
+                self = .string(intValue)
+            case let arrayValue as [Any]:
+                self = .array(arrayValue.compactMap { JSON(rawValue: $0) })
+            case let objectValue as [String: Any]:
+                self = .object(objectValue.compactMapValues { JSON(rawValue: $0) })
+            default:
+                return nil
+            }
         }
     }
 }

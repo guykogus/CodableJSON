@@ -269,5 +269,14 @@ class JSONTests: XCTestCase {
             "state": "CA",
             "zip": "95014"
             ])
+
+        XCTAssertEqual(JSON(rawValue: nil), .null)
+        XCTAssertEqual(JSON(rawValue: false), .bool(false))
+        XCTAssertEqual(JSON(rawValue: 42), .int(42))
+        XCTAssertEqual(JSON(rawValue: 1.0), .double(1.0))
+        XCTAssertEqual(JSON(rawValue: "foo"), .string("foo"))
+        XCTAssertEqual(JSON(rawValue: ["foo"]), .array(["foo"]))
+        XCTAssertEqual(JSON(rawValue: ["foo": "bar"]), .object(["foo": "bar"]))
+        XCTAssertEqual(JSON(rawValue: Date()), nil)
     }
 }

@@ -2,6 +2,7 @@
 
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CodableJSON.svg)](https://cocoapods.org)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 
 JSON in Swift - the way it should be.
 
@@ -80,11 +81,45 @@ companies["Apple"]?["address"]?["state"] = "California"
 
 # Installation
 
-CodableJSON is available through [Cocoapods](https://cocoapods.org). To install, add to your Podfile:
+<details>
+<summary>CocoaPods</summary>
+</br>
+<p>To integrate CodableJSON into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
+<pre><code class="ruby language-ruby">pod 'CodableJSON'</code></pre>
+</details>
 
-```
-pod 'CodableJSON'
-```
+<details>
+<summary>Carthage</summary>
+</br>
+<p>To integrate CodableJSON into your Xcode project using <a href="https://github.com/Carthage/Carthage">Carthage</a>, specify it in your <code>Cartfile</code>:</p>
+<pre><code class="ogdl language-ogdl">github "guykogus/CodableJSON"</code></pre>
+</details>
+
+<details>
+<summary>Swift Package Manager</summary>
+</br>
+<p>You can use <a href="https://swift.org/package-manager">The Swift Package Manager</a> to install <code>CodableJSON</code> by adding the proper description to your <code>Package.swift</code> file:</p>
+
+<pre><code class="swift language-swift">import PackageDescription
+
+let package = Package(
+    name: "YOUR_PROJECT_NAME",
+    targets: [],
+    dependencies: [
+        .package(url: "https://github.com/guykogus/CodableJSON.git", from: "1.2.0")
+    ]
+)
+</code></pre>
+
+<p>Next, add <code>CodableJSON</code> to your targets dependencies like so:</p>
+<pre><code class="swift language-swift">.target(
+    name: "YOUR_TARGET_NAME",
+    dependencies: [
+        "CodableJSON",
+    ]
+),</code></pre>
+<p>Then run <code>swift package update</code>.</p>
+</details>
 
 # License
 

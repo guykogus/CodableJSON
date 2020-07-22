@@ -7,7 +7,7 @@
 //
 
 /// A JSON object.
-public enum JSON: Equatable {
+public enum JSON: Hashable {
     /// A null object.
     case null
     /// A boolean value (true/false).

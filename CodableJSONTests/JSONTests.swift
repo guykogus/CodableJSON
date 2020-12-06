@@ -38,6 +38,21 @@ class JSONTests: XCTestCase {
         ]
     }
 
+    struct Person: Codable, Equatable {
+        let firstName: String
+        let lastName: String
+        let height: Int
+        let dateOfBirth: Date
+
+        static let person = Person(firstName: "Guy", lastName: "Kogus", height: 173, dateOfBirth: Date(timeIntervalSince1970: 0))
+        static let json = JSON([
+            "first_name": "Guy",
+            "last_name": "Kogus",
+            "height": 173,
+            "date_of_birth": "1970-01-01T00:00:00Z"
+        ])
+    }
+
     func testNull() {
         XCTAssertFalse(Dummy.bool.isNull)
         XCTAssertFalse(Dummy.int.isNull)
@@ -280,39 +295,23 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(JSON(rawValue: Date()), nil)
     }
 
-    #if canImport(Foundation)
-    struct Person: Codable, Equatable {
-        let firstName: String
-        let lastName: String
-        let height: Int
-        let dateOfBirth: Date
-
-        static let person = Person(firstName: "Guy", lastName: "Kogus", height: 173, dateOfBirth: Date(timeIntervalSince1970: 0))
-        static let json = JSON([
-            "first_name": "Guy",
-            "last_name": "Kogus",
-            "height": 173,
-            "date_of_birth": "1970-01-01T00:00:00Z"
-        ])
-    }
-
-    func testEncodable() {
+    func testInitEncodableValue() {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             encoder.keyEncodingStrategy = .convertToSnakeCase
 
-            let json = try JSON(Person.person, encoder: encoder)
+            let json = try JSON(encodableValue: Person.person, encoder: encoder)
             XCTAssertEqual(json, Person.json)
 
-            let string = try JSON(JSON("foo"), encoder: encoder)
+            let string = try JSON(encodableValue: JSON("foo"))
             XCTAssertEqual(string, "foo")
         } catch {
             XCTFail(error.localizedDescription)
         }
     }
 
-    func testDecodable() {
+    func testDecode() {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
@@ -321,11 +320,10 @@ class JSONTests: XCTestCase {
             let person = try Person.json.decode(Person.self, decoder: decoder)
             XCTAssertEqual(person, Person.person)
 
-            let string = try JSON("foo").decode(String.self, decoder: decoder)
+            let string = try JSON("foo").decode() as String
             XCTAssertEqual(string, "foo")
         } catch {
             XCTFail(error.localizedDescription)
         }
     }
-    #endif
 }

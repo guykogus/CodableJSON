@@ -310,6 +310,26 @@ extension JSON: Codable {
     }
 }
 
+// MARK: - Codable Conversion
+
+// Convert between JSON and Codable types
+
+public extension JSON {
+    /// Initialise using an encodable value.
+    /// - Parameter value: An object conforming to `Encodable`.
+    /// - Parameter encoder: The encoder to use for generating the JSON data.
+    init<T>(encodableValue value: T, encoder: JSONEncoder = JSONEncoder()) throws where T: Encodable {
+        self = try JSONDecoder().decode(JSON.self, from: encoder.encode(value))
+    }
+
+    /// Returns a value of the type you specify, decoded from a JSON object.
+    /// - Parameter type: The type of the value to decode from the supplied JSON object.
+    /// - Parameter decoder: The JSON object to decode.
+    func decode<T>(_ type: T.Type = T.self, decoder: JSONDecoder = JSONDecoder()) throws -> T where T: Decodable {
+        return try decoder.decode(T.self, from: JSONEncoder().encode(self))
+    }
+}
+
 // MARK: - Raw values
 
 // Generally used for compatibility with other libraries.
@@ -472,38 +492,3 @@ extension JSON: ExpressibleByDictionaryLiteral {
         self = .object(.init(uniqueKeysWithValues: elements))
     }
 }
-
-#if canImport(Foundation)
-import Foundation
-
-public extension JSON {
-    enum SerializationError: Error {
-        case missingValue
-    }
-
-    /// Initialise using an encodable value
-    /// - Parameter value: An object conforming to `Encodable`
-    /// - Parameter encoder: The encoder to use for generating the JSON data
-    init<T>(_ value: T, encoder: JSONEncoder) throws where T: Encodable {
-        let obj = try JSONSerialization.jsonObject(with: try encoder.encode(value), options: [.fragmentsAllowed])
-        self = JSON(rawValue: obj)!
-    }
-
-    /// Returns a value of the type you specify, decoded from a JSON object.
-    /// - Parameter type: The type of the value to decode from the supplied JSON object.
-    /// - Parameter decoder: The JSON object to decode.
-    func decode<T>(_ type: T.Type, decoder: JSONDecoder) throws -> T where T: Decodable {
-        guard let rawValue = rawValue else { throw SerializationError.missingValue }
-
-        let data = try JSONSerialization.data(withJSONObject: rawValue, options: [.fragmentsAllowed])
-        return try decoder.decode(T.self, from: data)
-    }
-
-    /// Returns a value of the expected return type, decoded from a JSON object.
-    /// If the return type cannot be easily deduced, use `decode(_:decoder:)` instead.
-    /// - Parameter decoder: The JSON object to decode.
-    func decode<T>(decoder: JSONDecoder) throws -> T where T: Decodable {
-        return try decode(T.self, decoder: decoder)
-    }
-}
-#endif

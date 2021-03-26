@@ -295,6 +295,7 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(JSON(rawValue: Date()), nil)
     }
 
+    #if canImport(Foundation)
     func testInitEncodableValue() {
         do {
             let encoder = JSONEncoder()
@@ -326,4 +327,5 @@ class JSONTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
     }
+    #endif
 }

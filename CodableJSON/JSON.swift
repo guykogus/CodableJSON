@@ -310,6 +310,9 @@ extension JSON: Codable {
     }
 }
 
+#if canImport(Foundation)
+import Foundation
+
 // MARK: - Codable Conversion
 
 // Convert between JSON and Codable types
@@ -329,6 +332,7 @@ public extension JSON {
         return try decoder.decode(T.self, from: JSONEncoder().encode(self))
     }
 }
+#endif
 
 // MARK: - Raw values
 

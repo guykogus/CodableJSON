@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CodableJSON'
-  s.version = '2.0.1'
+  s.version = '2.0.2'
   s.summary = 'JSON in Swift - the way it should be'
   s.description = <<-DESC
   Simplify the way that you use JSON objects.

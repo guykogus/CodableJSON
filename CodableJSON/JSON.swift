@@ -386,14 +386,14 @@ public extension JSON {
             self = .null
         case .some(let value):
             switch value {
-            case let boolValue as Bool:
-                self = .bool(boolValue)
             case let intValue as Int:
                 self = .int(intValue)
             case let intValue as Double:
                 self = .double(intValue)
-            case let intValue as String:
-                self = .string(intValue)
+            case let boolValue as Bool:
+                self = .bool(boolValue)
+            case let stringValue as String:
+                self = .string(stringValue)
             case let arrayValue as [Any]:
                 self = .array(arrayValue.compactMap { JSON(rawValue: $0) })
             case let objectValue as [String: Any]:

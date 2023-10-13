@@ -247,7 +247,7 @@ extension JSON: Codable {
         }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         if let container = try? decoder.container(keyedBy: CodingKeys.self) {
             var object = [String: JSON]()
             for key in container.allKeys {
@@ -279,7 +279,7 @@ extension JSON: Codable {
         }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         switch self {
         case .null:
             var container = encoder.singleValueContainer()

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Guy Kogus. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 //! Project version number for CodableJSON.
 FOUNDATION_EXPORT double CodableJSONVersionNumber;

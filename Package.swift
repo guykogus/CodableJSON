@@ -1,9 +1,16 @@
-// swift-tools-version:5.8
+// swift-tools-version:6.0
 
 import PackageDescription
 
 let package = Package(
     name: "CodableJSON",
+    platforms: [
+        .iOS(.v12),
+        .macOS(.v10_13),
+        .tvOS(.v12),
+        .visionOS(.v1),
+        .watchOS(.v4),
+    ],
     products: [
         .library(
             name: "CodableJSON",
@@ -12,23 +19,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "CodableJSON",
-            path: "CodableJSON",
-            swiftSettings: [
-                .enableUpcomingFeature("ConciseMagicFile"),
-                .enableUpcomingFeature("ExistentialAny"),
-                .enableUpcomingFeature("ForwardTrailingClosures"),
-            ]
+            name: "CodableJSON"
         ),
         .testTarget(
             name: "CodableJSONTests",
-            dependencies: ["CodableJSON"],
-            path: "CodableJSONTests",
-            swiftSettings: [
-                .enableUpcomingFeature("ConciseMagicFile"),
-                .enableUpcomingFeature("ExistentialAny"),
-                .enableUpcomingFeature("ForwardTrailingClosures"),
-            ]
+            dependencies: ["CodableJSON"]
         ),
     ]
 )

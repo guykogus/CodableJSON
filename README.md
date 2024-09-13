@@ -1,16 +1,14 @@
 # CodableJSON
 
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CodableJSON.svg)](https://cocoapods.org)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 
 JSON in Swift - the way it should be.
 
 # Requirements
 
-- iOS 9.0+ / macOS 10.9+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 10.2+
-- Swift 5.0+
+- iOS 12.0+ / macOS 10.13+ / tvOS 12.0+ / watchOS 4.0+ / visionOS 1.0+
+- Xcode 16+
+- Swift 6.0+
 
 # Usage
 
@@ -80,20 +78,6 @@ companies["Apple"]?["address"]?["state"] = "California"
 ```
 
 # Installation
-
-<details>
-<summary>CocoaPods</summary>
-</br>
-<p>To integrate CodableJSON into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
-<pre><code class="ruby language-ruby">pod 'CodableJSON'</code></pre>
-</details>
-
-<details>
-<summary>Carthage</summary>
-</br>
-<p>To integrate CodableJSON into your Xcode project using <a href="https://github.com/Carthage/Carthage">Carthage</a>, specify it in your <code>Cartfile</code>:</p>
-<pre><code class="ogdl language-ogdl">github "guykogus/CodableJSON"</code></pre>
-</details>
 
 <details>
 <summary>Swift Package Manager</summary>

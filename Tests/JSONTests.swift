@@ -6,11 +6,11 @@
 //  Copyright © 2018 Guy Kogus. All rights reserved.
 //
 
-import XCTest
 @testable import CodableJSON
+import XCTest
 
 class JSONTests: XCTestCase {
-    struct Dummy {
+    enum Dummy {
         static let null = JSON.null
         static let bool = JSON.bool(false)
         static let int = JSON.int(0)
@@ -20,7 +20,7 @@ class JSONTests: XCTestCase {
         static let object = JSON.object([:])
     }
 
-    struct Example {
+    enum Example {
         static let array: [JSON] = [1, 1, 2, 3, 5, 8, 13]
         static let object: JSON = [
             "foo": "bar",
@@ -32,9 +32,9 @@ class JSONTests: XCTestCase {
                     "street": "1 Infinite Loop",
                     "city": "Cupertino",
                     "state": "CA",
-                    "zip": "95014"
-                ]
-            ]
+                    "zip": "95014",
+                ],
+            ],
         ]
     }
 
@@ -44,12 +44,17 @@ class JSONTests: XCTestCase {
         let height: Int
         let dateOfBirth: Date
 
-        static let person = Person(firstName: "Guy", lastName: "Kogus", height: 173, dateOfBirth: Date(timeIntervalSince1970: 0))
+        static let person = Person(
+            firstName: "Guy",
+            lastName: "Kogus",
+            height: 173,
+            dateOfBirth: Date(timeIntervalSince1970: 0)
+        )
         static let json = JSON([
             "first_name": "Guy",
             "last_name": "Kogus",
             "height": 173,
-            "date_of_birth": "1970-01-01T00:00:00Z"
+            "date_of_birth": "1970-01-01T00:00:00Z",
         ])
     }
 
@@ -110,10 +115,10 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(negative.doubleValue, -123)
     }
 
-    func testNumbers() {
+    func testNumbers() throws {
         let numbersString = "[-0, 0, 0.0, 0.1]"
         let decoder = JSONDecoder()
-        let doublesJSON = try! decoder.decode(JSON.self, from: numbersString.data(using: .utf8)!)
+        let doublesJSON = try decoder.decode(JSON.self, from: numbersString.data(using: .utf8)!)
         XCTAssertEqual(doublesJSON[0]?.intValue, 0)
         XCTAssertEqual(doublesJSON[1]?.intValue, 0)
         XCTAssertEqual(doublesJSON[2]?.intValue, 0)
@@ -200,9 +205,9 @@ class JSONTests: XCTestCase {
                     "street": "1 Infinite Loop",
                     "city": "Cupertino",
                     "state": "CA",
-                    "zip": "95014"
-                ]
-            ]
+                    "zip": "95014",
+                ],
+            ],
         ]
         XCTAssertEqual(object.count, 5)
         XCTAssertEqual(object["foo"]?.stringValue, "bar")
@@ -221,11 +226,11 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(newObject["life"]?.stringValue, "great")
     }
 
-    func testCodable() {
+    func testCodable() throws {
         // Example taken from https://json.org/example.html
         let stringValue = """
-{"glossary":{"GlossDiv":{"GlossList":{"GlossEntry":{"Abbrev":"ISO 8879:1986","Acronym":"SGML","GlossDef":{"GlossSeeAlso":["GML","XML"],"para":"A meta-markup language, used to create markup languages such as DocBook."},"GlossSee":"markup","GlossTerm":"Standard Generalized Markup Language","ID":"SGML","SortAs":"SGML"}},"title":"S"},"title":"example glossary"}}
-"""
+        {"glossary":{"GlossDiv":{"GlossList":{"GlossEntry":{"Abbrev":"ISO 8879:1986","Acronym":"SGML","GlossDef":{"GlossSeeAlso":["GML","XML"],"para":"A meta-markup language, used to create markup languages such as DocBook."},"GlossSee":"markup","GlossTerm":"Standard Generalized Markup Language","ID":"SGML","SortAs":"SGML"}},"title":"S"},"title":"example glossary"}}
+        """
         let jsonValue: JSON = [
             "glossary": [
                 "GlossDiv": [
@@ -236,28 +241,28 @@ class JSONTests: XCTestCase {
                             "GlossDef": [
                                 "GlossSeeAlso": [
                                     "GML",
-                                    "XML"
+                                    "XML",
                                 ],
-                                "para": "A meta-markup language, used to create markup languages such as DocBook."
+                                "para": "A meta-markup language, used to create markup languages such as DocBook.",
                             ],
                             "GlossSee": "markup",
                             "GlossTerm": "Standard Generalized Markup Language",
                             "ID": "SGML",
-                            "SortAs": "SGML"
-                        ]
+                            "SortAs": "SGML",
+                        ],
                     ],
-                    "title": "S"
+                    "title": "S",
                 ],
-                "title": "example glossary"
-            ]
+                "title": "example glossary",
+            ],
         ]
 
-        XCTAssertEqual(try! JSONDecoder().decode(JSON.self, from: stringValue.data(using: .utf8)!),
+        XCTAssertEqual(try JSONDecoder().decode(JSON.self, from: stringValue.data(using: .utf8)!),
                        jsonValue)
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
-        XCTAssertEqual(String(data: try! encoder.encode(jsonValue), encoding: .utf8),
+        XCTAssertEqual(String(data: try encoder.encode(jsonValue), encoding: .utf8),
                        stringValue)
     }
 
@@ -267,7 +272,7 @@ class JSONTests: XCTestCase {
         XCTAssertEqual(JSON(Float(3.141)).doubleValue!, 3.141, accuracy: 0.0001)
 
         let string = "Hello world"
-        XCTAssertEqual(JSON(string[string.startIndex..<string.endIndex]), JSON(string))
+        XCTAssertEqual(JSON(string[string.startIndex ..< string.endIndex]), JSON(string))
 
         XCTAssertEqual(JSON(Example.array.lazy), JSON(Example.array))
     }
@@ -282,8 +287,8 @@ class JSONTests: XCTestCase {
             "street": "1 Infinite Loop",
             "city": "Cupertino",
             "state": "CA",
-            "zip": "95014"
-            ])
+            "zip": "95014",
+        ])
 
         XCTAssertEqual(JSON(rawValue: nil), .null)
         XCTAssertEqual(JSON(rawValue: false), .bool(false))
@@ -304,36 +309,36 @@ class JSONTests: XCTestCase {
     }
 
     #if canImport(Foundation)
-    func testInitEncodableValue() {
-        do {
-            let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
-            encoder.keyEncodingStrategy = .convertToSnakeCase
+        func testInitEncodableValue() {
+            do {
+                let encoder = JSONEncoder()
+                encoder.dateEncodingStrategy = .iso8601
+                encoder.keyEncodingStrategy = .convertToSnakeCase
 
-            let json = try JSON(encodableValue: Person.person, encoder: encoder)
-            XCTAssertEqual(json, Person.json)
+                let json = try JSON(encodableValue: Person.person, encoder: encoder)
+                XCTAssertEqual(json, Person.json)
 
-            let string = try JSON(encodableValue: JSON("foo"))
-            XCTAssertEqual(string, "foo")
-        } catch {
-            XCTFail(error.localizedDescription)
+                let string = try JSON(encodableValue: JSON("foo"))
+                XCTAssertEqual(string, "foo")
+            } catch {
+                XCTFail(error.localizedDescription)
+            }
         }
-    }
 
-    func testDecode() {
-        do {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
+        func testDecode() {
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let person = try Person.json.decode(Person.self, decoder: decoder)
-            XCTAssertEqual(person, Person.person)
+                let person = try Person.json.decode(Person.self, decoder: decoder)
+                XCTAssertEqual(person, Person.person)
 
-            let string = try JSON("foo").decode() as String
-            XCTAssertEqual(string, "foo")
-        } catch {
-            XCTFail(error.localizedDescription)
+                let string = try JSON("foo").decode() as String
+                XCTAssertEqual(string, "foo")
+            } catch {
+                XCTFail(error.localizedDescription)
+            }
         }
-    }
     #endif
 }

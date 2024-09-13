@@ -7,7 +7,7 @@
 //
 
 /// A JSON object.
-public enum JSON: Hashable {
+public enum JSON: Hashable, Sendable {
     /// A null object.
     case null
     /// A boolean value (true/false).
@@ -44,7 +44,7 @@ public extension JSON {
     /// Initialise an integer value.
     ///
     /// - Parameter value: Any value representable by `BinaryInteger`.
-    init<T>(_ value: T) where T: BinaryInteger {
+    init(_ value: some BinaryInteger) {
         self = .int(.init(value))
     }
 
@@ -58,7 +58,7 @@ public extension JSON {
     /// Initialise a floating point value.
     ///
     /// - Parameter value: Any value representable by `BinaryFloatingPoint`.
-    init<T>(_ value: T) where T: BinaryFloatingPoint {
+    init(_ value: some BinaryFloatingPoint) {
         self = .double(.init(value))
     }
 
@@ -72,7 +72,7 @@ public extension JSON {
     /// Initialise a string value.
     ///
     /// - Parameter value: Any value representable by `StringProtocol`.
-    init<T>(_ value: T) where T: StringProtocol {
+    init(_ value: some StringProtocol) {
         self = .string(.init(value))
     }
 
@@ -86,7 +86,7 @@ public extension JSON {
     /// Initialise an array of JSON objects.
     ///
     /// - Parameter value: A `Sequence` of `JSON` objects.
-    init<S>(_ value: S) where S: Sequence, S.Element == JSON {
+    init(_ value: some Sequence<JSON>) {
         self = .array(.init(value))
     }
 
@@ -109,61 +109,61 @@ public extension JSON {
 
     /// Hepler function to get the boolean value, if possible.
     var boolValue: Bool? {
-        guard case .bool(let value) = self else { return nil }
+        guard case let .bool(value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the integer value, if possible.
     var intValue: Int? {
         switch self {
-        case .null, .bool(_), .string(_), .array(_), .object(_):
-            return nil
-        case .int(let value):
-            return value
-        case .double(let value):
-            return (value == value.rounded()) ? Int(value) : nil
+        case .null, .bool, .string, .array, .object:
+            nil
+        case let .int(value):
+            value
+        case let .double(value):
+            (value == value.rounded()) ? Int(value) : nil
         }
     }
 
     /// Hepler function to get the floating point value, if possible.
     var doubleValue: Double? {
         switch self {
-        case .null, .bool(_), .string(_), .array(_), .object(_):
-            return nil
-        case .int(let value):
-            return Double(value)
-        case .double(let value):
-            return value
+        case .null, .bool, .string, .array, .object:
+            nil
+        case let .int(value):
+            Double(value)
+        case let .double(value):
+            value
         }
     }
 
     /// Hepler function to get the string value, if possible.
     var stringValue: String? {
-        guard case .string(let value) = self else { return nil }
+        guard case let .string(value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the arraiy value, if possible.
     var arrayValue: [JSON]? {
-        guard case .array(let value) = self else { return nil }
+        guard case let .array(value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the object value, if possible.
     var objectValue: [String: JSON]? {
-        guard case .object(let value) = self else { return nil }
+        guard case let .object(value) = self else { return nil }
         return value
     }
 
     /// Hepler function to get the number of contained values, if possible.
     var count: Int? {
         switch self {
-        case .null, .bool(_), .int(_), .double(_), .string(_):
-            return nil
-        case .array(let value):
-            return value.count
-        case .object(let value):
-            return value.count
+        case .null, .bool, .int, .double, .string:
+            nil
+        case let .array(value):
+            value.count
+        case let .object(value):
+            value.count
         }
     }
 
@@ -174,14 +174,14 @@ public extension JSON {
     /// - Parameter index: The index of the array
     subscript(index: Int) -> JSON? {
         get {
-            guard case .array(let value) = self,
-                index < value.count else { return nil }
+            guard case let .array(value) = self,
+                  index < value.count else { return nil }
             return value[index]
         }
         set {
-            guard case .array(var value) = self,
-                index < value.count else { return }
-            if let newValue = newValue {
+            guard case var .array(value) = self,
+                  index < value.count else { return }
+            if let newValue {
                 value[index] = newValue
             } else {
                 value[index] = .null
@@ -195,10 +195,10 @@ public extension JSON {
     /// - Parameter key: The key for retrieving the value from the dictionary.
     subscript(key: String) -> JSON? {
         get {
-            return objectValue?[key]
+            objectValue?[key]
         }
         set {
-            guard case .object(var value) = self else { return }
+            guard case var .object(value) = self else { return }
             if newValue == nil {
                 value[key] = .null
             } else {
@@ -222,10 +222,10 @@ extension JSON: Codable {
 
         var stringValue: String {
             switch self {
-            case .string(let value):
-                return value
-            case .int(let value):
-                return "Index \(value)"
+            case let .string(value):
+                value
+            case let .int(value):
+                "Index \(value)"
             }
         }
 
@@ -235,10 +235,10 @@ extension JSON: Codable {
 
         var intValue: Int? {
             switch self {
-            case .string(let value):
-                return Int(value)
-            case .int(let value):
-                return value
+            case let .string(value):
+                Int(value)
+            case let .int(value):
+                value
             }
         }
 
@@ -258,7 +258,7 @@ extension JSON: Codable {
             var array = [JSON]()
             array.reserveCapacity(arrayContainer.count ?? 0)
             while !arrayContainer.isAtEnd {
-                array.append(try arrayContainer.decode(JSON.self))
+                try array.append(arrayContainer.decode(JSON.self))
             }
             self = .array(array)
         } else {
@@ -284,24 +284,24 @@ extension JSON: Codable {
         case .null:
             var container = encoder.singleValueContainer()
             try container.encodeNil()
-        case .bool(let value):
+        case let .bool(value):
             var container = encoder.singleValueContainer()
             try container.encode(value)
-        case .int(let value):
+        case let .int(value):
             var container = encoder.singleValueContainer()
             try container.encode(value)
-        case .double(let value):
+        case let .double(value):
             var container = encoder.singleValueContainer()
             try container.encode(value)
-        case .string(let value):
+        case let .string(value):
             var container = encoder.singleValueContainer()
             try container.encode(value)
-        case .array(let value):
+        case let .array(value):
             var container = encoder.unkeyedContainer()
             for obj in value {
                 try container.encode(obj)
             }
-        case .object(let value):
+        case let .object(value):
             var container = encoder.container(keyedBy: CodingKeys.self)
             for (key, value) in value {
                 try container.encode(value, forKey: JSON.CodingKeys(stringValue: key)!)
@@ -321,15 +321,15 @@ public extension JSON {
     /// Initialise using an encodable value.
     /// - Parameter value: An object conforming to `Encodable`.
     /// - Parameter encoder: The encoder to use for generating the JSON data.
-    init<T>(encodableValue value: T, encoder: JSONEncoder = JSONEncoder()) throws where T: Encodable {
+    init(encodableValue value: some Encodable, encoder: JSONEncoder = JSONEncoder()) throws {
         self = try JSONDecoder().decode(JSON.self, from: encoder.encode(value))
     }
 
     /// Returns a value of the type you specify, decoded from a JSON object.
     /// - Parameter type: The type of the value to decode from the supplied JSON object.
     /// - Parameter decoder: The JSON object to decode.
-    func decode<T>(_ type: T.Type = T.self, decoder: JSONDecoder = JSONDecoder()) throws -> T where T: Decodable {
-        return try decoder.decode(T.self, from: JSONEncoder().encode(self))
+    func decode<T>(_: T.Type = T.self, decoder: JSONDecoder = JSONDecoder()) throws -> T where T: Decodable {
+        try decoder.decode(T.self, from: JSONEncoder().encode(self))
     }
 }
 #endif
@@ -352,19 +352,19 @@ public extension JSON {
     var rawValue: Any? {
         switch self {
         case .null:
-            return nil
-        case .bool(let value):
-            return value
-        case .int(let value):
-            return value
-        case .double(let value):
-            return value
-        case .string(let value):
-            return value
-        case .array(let value):
-            return value.map { $0.rawValue }
-        case .object(let value):
-            return [String: Any?](uniqueKeysWithValues: value.lazy.map { ($0, $1.rawValue) })
+            nil
+        case let .bool(value):
+            value
+        case let .int(value):
+            value
+        case let .double(value):
+            value
+        case let .string(value):
+            value
+        case let .array(value):
+            value.map(\.rawValue)
+        case let .object(value):
+            [String: Any?](uniqueKeysWithValues: value.lazy.map { ($0, $1.rawValue) })
         }
     }
 
@@ -382,25 +382,22 @@ public extension JSON {
     /// - Parameter rawValue: The value whose type will be checked for creating a `JSON` object.
     init?(rawValue: Any?) {
         switch rawValue {
-        case .none:
+        case nil:
             self = .null
-        case .some(let value):
-            switch value {
-            case let intValue as Int:
-                self = .int(intValue)
-            case let intValue as Double:
-                self = .double(intValue)
-            case let boolValue as Bool:
-                self = .bool(boolValue)
-            case let stringValue as String:
-                self = .string(stringValue)
-            case let arrayValue as [Any]:
-                self = .array(arrayValue.compactMap { JSON(rawValue: $0) })
-            case let objectValue as [String: Any]:
-                self = .object(objectValue.compactMapValues { JSON(rawValue: $0) })
-            default:
-                return nil
-            }
+        case let intValue as Int:
+            self = .int(intValue)
+        case let intValue as Double:
+            self = .double(intValue)
+        case let boolValue as Bool:
+            self = .bool(boolValue)
+        case let stringValue as String:
+            self = .string(stringValue)
+        case let arrayValue as [Any]:
+            self = .array(arrayValue.compactMap { JSON(rawValue: $0) })
+        case let objectValue as [String: Any]:
+            self = .object(objectValue.compactMapValues { JSON(rawValue: $0) })
+        default:
+            return nil
         }
     }
 }
@@ -413,19 +410,19 @@ extension JSON: CustomStringConvertible {
     public var description: String {
         switch self {
         case .null:
-            return "null"
-        case .bool(let value):
-            return value ? "true" : "false"
-        case .string(let value):
-            return "\"\(value)\""
-        case .int(let value):
-            return String(value)
-        case .double(let value):
-            return String(value)
-        case .array(let value):
-            return "[\(value.map { $0.description }.joined(separator: JSON.descriptionSeparator))]"
-        case .object(let value):
-            return "{\(value.map { "\"\($0)\": \($1.description)" }.joined(separator: JSON.descriptionSeparator))}"
+            "null"
+        case let .bool(value):
+            value ? "true" : "false"
+        case let .string(value):
+            "\"\(value)\""
+        case let .int(value):
+            String(value)
+        case let .double(value):
+            String(value)
+        case let .array(value):
+            "[\(value.map(\.description).joined(separator: JSON.descriptionSeparator))]"
+        case let .object(value):
+            "{\(value.map { "\"\($0)\": \($1.description)" }.joined(separator: JSON.descriptionSeparator))}"
         }
     }
 }
@@ -436,19 +433,19 @@ extension JSON: CustomDebugStringConvertible {
     public var debugDescription: String {
         switch self {
         case .null:
-            return "<NULL>:\(description)"
+            "<NULL>:\(description)"
         case .bool:
-            return "<BOOL>:\(description)"
+            "<BOOL>:\(description)"
         case .string:
-            return "<STRING>:\(description)"
+            "<STRING>:\(description)"
         case .int:
-            return "<INT>:\(description)"
+            "<INT>:\(description)"
         case .double:
-            return "<DOUBLE>:\(description)"
-        case .array(let value):
-            return "<ARRAY>:[\(value.map { $0.debugDescription }.joined(separator: JSON.descriptionSeparator))]"
-        case .object(let value):
-            return "<OBJECT>:{\(value.map { "\"\($0)\": \($1.debugDescription)" }.joined(separator: JSON.descriptionSeparator))}"
+            "<DOUBLE>:\(description)"
+        case let .array(value):
+            "<ARRAY>:[\(value.map(\.debugDescription).joined(separator: JSON.descriptionSeparator))]"
+        case let .object(value):
+            "<OBJECT>:{\(value.map { "\"\($0)\": \($1.debugDescription)" }.joined(separator: JSON.descriptionSeparator))}"
         }
     }
 }
@@ -456,7 +453,7 @@ extension JSON: CustomDebugStringConvertible {
 // MARK: - Expressible Literals
 
 extension JSON: ExpressibleByNilLiteral {
-    public init(nilLiteral: ()) {
+    public init(nilLiteral _: ()) {
         self = .null
     }
 }

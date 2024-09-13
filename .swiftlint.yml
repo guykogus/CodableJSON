@@ -1,0 +1,5 @@
+disabled_rules:
+  - opening_brace
+  - trailing_comma
+
+line_length: 150
